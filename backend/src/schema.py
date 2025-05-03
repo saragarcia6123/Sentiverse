@@ -21,7 +21,7 @@ class Song:
 
 
 @strawberry.type
-class Lyrics:
+class Text:
     content: str | None
 
 
@@ -58,21 +58,12 @@ class Query:
         return await _query_song(song_query, artist_query, limit)
 
     @strawberry.field
-    async def fetch_lyrics(
-        self,
-        path: str,
-        preserve_format: bool = True,
-        section_labels: bool = True,
-        bracket_content: bool = True,
-    ) -> Lyrics:
+    async def fetch_lyrics(self, path: str) -> Text:
         """
         ----- EXAMPLE GRAPHQL QUERY -----
         query {
             fetchLyrics(
-                path: "/Queen-dont-stop-me-now-lyrics",
-                preserveFormat: false,
-                sectionLabels: false,
-                bracketContent: true
+                path: "/Queen-dont-stop-me-now-lyrics"
             ) {
                 content
             }
@@ -80,24 +71,19 @@ class Query:
         """
         from src.routes.genius_routes import fetch_lyrics as _fetch_lyrics
 
-        return await _fetch_lyrics(
-            path=path,
-            preserve_format=preserve_format,
-            section_labels=section_labels,
-            bracket_content=bracket_content,
-        )
+        return await _fetch_lyrics(path=path)
 
     @strawberry.field
     async def classify(
         self,
-        lyrics: str,
+        text: str,
         label_sets: List[List[str]],
     ) -> List[ClassificationResults]:
         """
         ----- EXAMPLE GRAPHQL QUERY -----
         query {
             classify(
-                lyrics: "Don't stop me now
+                text: "Don't stop me now
                          I'm havin' such a good time,
                          I'm havin' a ball",
                 labelSets: [
@@ -112,7 +98,7 @@ class Query:
         """
         from src.routes.ml_routes import classify as _classify
 
-        return await _classify(lyrics=lyrics, label_sets=label_sets)
+        return await _classify(text=text, label_sets=label_sets)
 
 
 schema = strawberry.Schema(Query)

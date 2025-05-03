@@ -60,5 +60,12 @@ class Classifier:
 
         return results
 
+    def remove_duplicate_label_sets(
+        self, label_sets: List[List[str]]
+    ) -> List[List[str]]:
+        unique_label_sets = list(set(tuple(label) for label in label_sets))
+        return [list(label) for label in unique_label_sets]
+
     def classify(self, text: str, label_sets: List[List[str]]) -> List[SetResults]:
+        label_sets = self.remove_duplicate_label_sets(label_sets)
         return self._classify_sets(text, label_sets)

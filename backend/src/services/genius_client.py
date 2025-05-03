@@ -11,34 +11,43 @@ from genius_client import GeniusClient
 load_dotenv()
 genius_access_token = os.getenv("GENIUS_ACCESS_TOKEN")
 
-# Initialize Genius Client
-genius = GeniusClient(genius_access_token)
 
-# Define our search terms
-songs_query = ["billie jean", "bohemian rhapsody"]
-artists_query = ["michael", "queen"]
+async def main():
 
-# Run the search
-search_data = asyncio.run(genius.get_songs_data(songs_query, artists_query))
+    # Initialize Genius Client
+    genius = GeniusClient(genius_access_token)
 
-# Extract the first matching result for each song-artist pair
-search_results = [item['result'] for item in search_data[0]]
+    # Define our search terms
+    songs_query = ["billie jean", "bohemian rhapsody"]
+    artists_query = ["michael jackson", "queen"]
 
-# Extract complete song and artist
-song_names = [result['title'] for result in search_results]
-artist_names = [result['artist_names'] for result in search_results]
+    # Run the search
+    search_data = await genius.search_song_data(songs_query, artists_query)
 
-# Fetch the lyrics for each found result
-lyrics = [
-    genius.fetch_lyrics(result['path'])
-    for result in search_results
-    if 'url' in result
-]
+    # Extract the first matching result for each song-artist pair
+    search_results = [item["result"] for item in search_data[0]]
 
-# Display the lyrics
-for song, artist, lyric in zip(song_names, artist_names, lyrics):
-    print(f"{song} - {artist}")
-    print(lyric, end='\n\n')
+    # Extract complete song and artist
+    song_names = [result["title"] for result in search_results]
+    artist_names = [result["artist_names"] for result in search_results]
+
+    # Fetch the lyrics for each found result
+    lyrics = [
+        await genius.fetch_lyrics(result["path"])
+        for result in search_results
+        if "url" in result
+    ]
+
+    # Display the song, artist and lyrics
+    for song, artist, lyric in zip(song_names, artist_names, lyrics):
+        print(f"{song} - {artist}", end="\n")
+
+        # Display lyrics
+        print(lyric, end="\n\n")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
 
 """
 
@@ -207,9 +216,6 @@ class GeniusClient:
     async def fetch_lyrics(
         self,
         path: str,
-        preserve_format: bool = True,
-        section_labels: bool = True,
-        bracket_content: bool = True,
     ) -> str | None:
         """
         Scrapes the lyrics from the given Genius song URL.
@@ -219,24 +225,6 @@ class GeniusClient:
             - path (str):
                 The Genius endpoint to the song's lyrics
                 eg. '/Michael-jackson-billie-jean-lyrics'
-
-            - preserve_format (bool):
-                Whether to preserve the default formatting
-                Set to True to preserve new lines
-                Set to False for plain text
-                Useful for tokenization when dealing with AI models
-
-            - section_labels (bool):
-                Whether to keep the default section labels (ie. [Verse 1])
-                Set to True to keep them
-                Set to False to keep only the lyrics themselves.
-
-            - bracket_content (bool):
-                Whether to keep text inside brackets
-                Set to True to keep it
-                Set to False to remove
-                Useful for passing into AI models for analysis
-                As content in brackets often contains filler words
         """
         session = ClientSession()
         url = f"{self._SITE_URL}{path}"
@@ -268,27 +256,13 @@ class GeniusClient:
 
         lyrics = lyrics_div.get_text("\n", strip=True)
 
-        if not preserve_format:
-            lyrics = " ".join(lyrics.splitlines())
+        # Add an extra line before lines section labels ie [Verse 1]
+        lines = []
+        for line in lyrics.splitlines():
+            if line[0] == "[" and line[-1] == "]":
+                lines.append("")
+            lines.append(line)
 
-        if not bracket_content:
-            # Removes anything inside ()
-            # eg. This is a (random) text -> This is a text
-            lyrics = re.sub(r"\(.*?\)", " ", lyrics)
-        else:
-            # Remove trailing whitespace in between ()
-            # eg. This is a ( random ) text -> This is a (random) text
-            lyrics = lyrics.replace("( ", "(").replace(" )", ")")
-
-        if not section_labels:
-            # Removes anything inside []
-            # eg. This is a [random] text -> This is a text
-            lyrics = re.sub(r"\[.*?\]", " ", lyrics)
-
-        # Remove trailing whitespace
-        lyrics = lyrics.strip()
-
-        # Remove duplicate white space
-        lyrics = re.sub(r"\s+", " ", lyrics)
+        lyrics = "\n".join(lines)
 
         return lyrics

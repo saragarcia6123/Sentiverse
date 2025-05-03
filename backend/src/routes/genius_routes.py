@@ -59,17 +59,12 @@ async def query_song(
     ]
 
 
-from src.schema import Lyrics
+from src.schema import Text
 
 
-async def fetch_lyrics(
-    path: str, preserve_format: bool, section_labels: bool, bracket_content: bool
-) -> Lyrics:
+async def fetch_lyrics(path: str) -> Text:
     response = await genius.fetch_lyrics(
         path=path,
-        preserve_format=preserve_format,
-        section_labels=section_labels,
-        bracket_content=bracket_content,
     )
 
-    return Lyrics(content=response)
+    return Text(content=response)
