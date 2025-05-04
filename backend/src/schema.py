@@ -42,8 +42,8 @@ class Query:
         ----- EXAMPLE GRAPHQL QUERY -----
         query {
             querySong(
-                songQuery: "dont stop me now",
-                artistQuery: "queen"
+                songQuery: "amazing grace",
+                artistQuery: "passion"
             ) {
                 id,
                 songName,
@@ -63,7 +63,7 @@ class Query:
         ----- EXAMPLE GRAPHQL QUERY -----
         query {
             fetchLyrics(
-                path: "/Queen-dont-stop-me-now-lyrics"
+                path: "/Passion-amazing-grace-my-chains-are-gone-live-lyrics"
             ) {
                 content
             }
@@ -83,12 +83,10 @@ class Query:
         ----- EXAMPLE GRAPHQL QUERY -----
         query {
             classify(
-                text: "Don't stop me now
-                         I'm havin' such a good time,
-                         I'm havin' a ball",
+                text: "Amazing grace, how sweet the sound.",
                 labelSets: [
-                    ["AMAZING", "TERRIBLE"],
-                    ["FUN", "BORING"]
+                    ["FORGIVENESS", "RESENTMENT"],
+                    ["HOPE", "DESPAIR"]
                 ]
             ) {
                 scores,

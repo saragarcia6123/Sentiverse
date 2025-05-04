@@ -18,8 +18,8 @@ async def main():
     genius = GeniusClient(genius_access_token)
 
     # Define our search terms
-    songs_query = ["billie jean", "bohemian rhapsody"]
-    artists_query = ["michael jackson", "queen"]
+    songs_query = ["amazing grace", "oceans"]
+    artists_query = ["passion", "hillsong united"]
 
     # Run the search
     search_data = await genius.search_song_data(songs_query, artists_query)
@@ -116,11 +116,11 @@ class GeniusClient:
         params:
             - songs (List[str]):
                 The list of song queries (case insensitive)
-                eg. ["despacito", "shape", "just the way"]
+                eg. ["amazing grace", "oceans"]
             
             - artists (List[str]):
                 The list of artist queries (case insensitive)
-                eg. ["luis", "ed", "bruno"]
+                eg. ["passion", "hillsong united"]
             
             - limit (int):
                 The maximum number of matches to return
@@ -224,7 +224,7 @@ class GeniusClient:
 
             - path (str):
                 The Genius endpoint to the song's lyrics
-                eg. '/Michael-jackson-billie-jean-lyrics'
+                eg. '/Hillsong-united-oceans-where-feet-may-fail-lyrics'
         """
         session = ClientSession()
         url = f"{self._SITE_URL}{path}"
