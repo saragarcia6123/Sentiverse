@@ -10,8 +10,18 @@ app = FastAPI(docs_url=None)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["localhost"],
-    allow_methods=["GET"],
+    allow_methods=["GET", "POST"],
 )
+
+"""
+----- Example cURL Request -----
+
+curl --request POST \
+  --header 'Content-Type: application/json' \
+  --url 'http://localhost:8000/graphql' \
+  --data '{"query":"query {\n classify(\n text: \"What a wonderful day!\",\n labelSets: [\n [\"LOVE\", \"HATE\"],\n [\"HOPE\", \"DESPAIR\"]\n]\n) {\n scores,\n labels\n }\n}"}'
+
+"""
 
 
 @app.get("/")
