@@ -1,12 +1,20 @@
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header.js';
+import Landing from './pages/Landing.js';
+import Search from './pages/Search.js';
 
-function App() {
+
+export default function App() {
 
   return (
     <>
-     <h1 className='font-bold text-center text-4xl'>UNDER CONSTRUCTION 🔨</h1> 
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/search" element={<Search />} />
+        </Routes>
+      </Router>
     </>
-  )
+  );
 }
-
-export default App
