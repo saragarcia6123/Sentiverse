@@ -28,36 +28,35 @@ Its core aim is to enhance the way we connect with music by revealing at a glanc
 - [React](https://react.dev)
 - [Tailwind CSS](https://tailwindcss.com/)
 
-## Running Locally (MacOS/Linux)
+## App Preview
 
-1) Obtain a Genius API key from [here](https://genius.com/api-clients)
+![App Preview](preview.gif)
 
-2) Clone the repository
+## Running Locally
+
+### Pre-requisites
+
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+### 1. Obtain a Genius API key from [here](https://genius.com/api-clients)
+
+### 2. Clone the repository
 
 ```sh
 git clone https://github.com/saragarcia6123/Sentiverse.git
 cd Sentiverse/backend/
 ```
 
-3) Create a .env file in backend/ and set your GENIUS_ACCESS_TOKEN
+### 3. Create a .env file in `backend` and set your Genius Access Token
 
 ```sh
 echo GENIUS_ACCESS_TOKEN=your_access_token > .env
 ```
 
-4) Create a virtual environment and install dependencies
+### 4. Run the application with Docker Compose
 
 ```sh
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-5) Run the application with FastAPI
-
-```sh
-cd src/
-fastapi run app.py
+docker compose up
 ```
 
 ### Authors
