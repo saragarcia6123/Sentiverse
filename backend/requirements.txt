@@ -1,7 +1,7 @@
 aiohttp
 asyncio
-requests
 beautifulsoup4
 transformers
 torch
 strawberry-graphql[fastapi]
+fastapi[standard]

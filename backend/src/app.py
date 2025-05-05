@@ -18,7 +18,7 @@ app.add_middleware(
 
 curl --request POST \
   --header 'Content-Type: application/json' \
-  --url 'http://localhost:8000/graphql' \
+  --url 'http://localhost:8080/graphql' \
   --data '{"query":"query {\n classify(\n text: \"What a wonderful day!\",\n labelSets: [\n [\"LOVE\", \"HATE\"],\n [\"HOPE\", \"DESPAIR\"]\n]\n) {\n scores,\n labels\n }\n}"}'
 
 """
@@ -26,7 +26,7 @@ curl --request POST \
 
 @app.get("/")
 def read_root():
-    return {"GraphQL": "http://localhost:8000/graphql"}
+    return {"GraphQL": "http://localhost:8080/graphql"}
 
 
 app.include_router(graphql_router, prefix="/graphql")

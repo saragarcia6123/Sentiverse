@@ -14,8 +14,6 @@ export default function Search() {
   const songQuery = searchParams.get("song");
   const artistQuery = searchParams.get("artist");
 
-  console.log(songQuery, artistQuery);
-
   const { loading, error, data } = useQuery(GET_SONG_MATCHES, {
     variables: {
       songQuery: songQuery || "",
@@ -40,14 +38,14 @@ export default function Search() {
               key={song.songName}
               className="flex border-gray-600 border-1 rounded-3xl"
             >
-              <div className="w-full p-8">
-                <h3 className="w-full text-2xl font-bold">{song.songName}</h3>
-                <p className="text-xl">{song.artistName}</p>
+              <div className="w-full h-full p-8 flex flex-col align-middle justify-between">
+                <h3 className="w-full text-xl font-bold">{song.songName}</h3>
+                <p className="text-l">{song.artistName}</p>
               </div>
               <img
                 src={song.imageUrl}
                 alt={song.songName}
-                className="aspect-square h-48 rounded-r-3xl"
+                className="aspect-square h-42 rounded-r-3xl"
               />
             </div>
           ))}
