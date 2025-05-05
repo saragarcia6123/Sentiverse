@@ -15,9 +15,6 @@ COPY ./requirements.txt /code/requirements.txt
 # Install dependencies
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-# Copy .env
-COPY ./.env /code/.env
-
 # Copy the rest of the app’s source code
 COPY . .
 
