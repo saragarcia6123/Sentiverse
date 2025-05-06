@@ -3,7 +3,7 @@ import { GET_SONG_MATCHES } from "../queries";
 import { useSearchParams } from "react-router-dom";
 import Loading from "./Loading";
 import Error from "./Error";
-import { Song } from "../types/Song";
+import { SongType } from "../types/SongType";
 import SongCard from "../components/SongCard";
 
 export default function Search() {
@@ -23,7 +23,7 @@ export default function Search() {
   if (loading) return <Loading />;
   if (error) return <Error name={error.name} message={error.message} />;
 
-  const { querySong } = data;
+  const { querySong }: { querySong: Array<SongType> } = data;
 
   return (
     <div id="pageSearch" className="w-full flex justify-center">
@@ -31,7 +31,7 @@ export default function Search() {
         <div>Please enter a search term in the URL</div>
       ) : (
         <div className="flex flex-col gap-8 m-2 max-w-xl">
-          {querySong.map((song: Song) => (
+          {querySong.map((song: SongType) => (
             <SongCard {...song} />
           ))}
         </div>

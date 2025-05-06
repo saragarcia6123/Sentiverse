@@ -7,6 +7,16 @@ export const GET_SONG_MATCHES: DocumentNode = gql`
       songName
       artistName
       imageUrl
+      lyricsPath
+    }
+  }
+`;
+
+export const FETCH_LYRICS: DocumentNode = gql`
+  query fetchLyrics(
+    $path: String!) {
+    fetchLyrics(path: $path) {
+      content
     }
   }
 `;
