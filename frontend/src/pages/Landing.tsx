@@ -23,7 +23,7 @@ export default function Landing() {
 
   return (
     <div
-      id="page-landing"
+      id="pageLanding"
       className="my-4 mx-8 flex justify-center items-center h-[50%]"
     >
       <form

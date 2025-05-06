@@ -1,6 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { GET_SONG_MATCHES } from "../queries";
 import { useSearchParams } from "react-router-dom";
+import Loading from "./Loading";
+import Error from "./Error";
 
 type SongMatch = {
   songName: string;
@@ -22,13 +24,13 @@ export default function Search() {
     },
   });
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (loading) return <Loading />;
+  if (error) return <Error name={error.name} message={error.message} />;
 
   const { querySong } = data;
 
   return (
-    <div id="page-search" className="w-full flex justify-center">
+    <div id="pageSearch" className="w-full flex justify-center">
       {querySong.length === 0 ? (
         <div>Please enter a search term in the URL</div>
       ) : (
