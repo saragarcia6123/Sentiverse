@@ -6,9 +6,9 @@ export default function LyricsCard({ lyrics }: LyricsCardProps) {
   const sections: string[] = lyrics.split("\n\n");
 
   return (
-    <div>
+    <div className="w-fit">
       {sections.map((section: string, id: number) => (
-        <LyricSection key={id} content={section} />
+        <LyricSection key={`section-${id}`} content={section} />
       ))}
     </div>
   );
@@ -19,8 +19,10 @@ function LyricSection({ content }: { content: string }) {
 
   return (
     <div className="my-4">
-      {lines.map((line: string) => (
-        <p>{line}</p>
+      {lines.map((line: string, id: number) => (
+        <p key={`line-${id}`} className="w-fit">
+          {line}
+        </p>
       ))}
     </div>
   );

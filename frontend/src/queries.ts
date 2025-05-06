@@ -20,3 +20,13 @@ export const FETCH_LYRICS: DocumentNode = gql`
     }
   }
 `;
+
+export const CLASSIFY: DocumentNode = gql`
+  query classify(
+    $text: String!, $labelSets: [[String!]!]!) {
+    classify(text: $text, labelSets: $labelSets) {
+      labels
+      scores
+    }
+  }
+`;
