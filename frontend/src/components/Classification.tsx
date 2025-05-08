@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import { CLASSIFY } from "../queries";
 import { ClipLoader } from "react-spinners";
 import { ClassificationType } from "../types/ClassificationType";
-import { LABEL_PAIRS } from "../../public/label_sets";
+import { LABEL_PAIRS } from "../data/label_sets";
 import PairChart from "./PairChart";
 
 export default function Classification({ lyrics }: { lyrics: string }) {

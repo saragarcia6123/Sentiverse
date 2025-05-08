@@ -1,5 +1,5 @@
 import { ClassificationType } from "../types/ClassificationType";
-import { POSITIVE_LABELS } from "../../public/label_sets";
+import { POSITIVE_LABELS } from "../data/label_sets";
 
 export default function PairChart({ pair }: { pair: ClassificationType }) {
   const positiveIndex: number = POSITIVE_LABELS.includes(pair.labels[0])
