@@ -24,7 +24,7 @@ export default function Landing() {
   return (
     <div
       id="pageLanding"
-      className="my-4 mx-8 flex justify-center items-center h-[50%]"
+      className="my-4 mx-8 flex justify-center items-center h-full"
     >
       <form
         onSubmit={handleSubmit}
@@ -33,12 +33,12 @@ export default function Landing() {
         <input
           placeholder="Song"
           ref={songInput}
-          className="rounded-full border-gray-600 border-1 text-2xl px-4 py-2"
+          className="rounded-full border-gray-600 dark:border-gray-400 border-1 text-2xl px-4 py-2"
         />
         <input
           placeholder="Artist"
           ref={artistInput}
-          className="rounded-full border-gray-600 border-1 text-2xl px-4 py-2"
+          className="rounded-full border-gray-600 dark:border-gray-400 border-1 text-2xl px-4 py-2"
         />
         <button
           type="submit"

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -9,4 +11,9 @@
 
 #root {
   min-height: 100vh;
+  height: 100%;
+}
+
+body {
+  @apply bg-white text-gray-800 dark:bg-gray-700 dark:text-white;
 }

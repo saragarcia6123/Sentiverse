@@ -7,7 +7,7 @@ import Lyrics from "./pages/Lyrics.js";
 
 export default function App() {
   return (
-    <div className="h-[100vh] box-border max-w-[1280px] mx-auto p-0">
+    <div className="h-min-[100vh] w-full box-border mx-auto p-0">
       <Router>
         <Header />
         <Routes>

@@ -4,6 +4,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 import "./index.css";
 import App from "./App.tsx";
+import { ThemeProvider } from "./hooks/useThemeContext.tsx";
 
 const API_URL: string = import.meta.env.VITE_API_URL;
 
@@ -15,7 +16,9 @@ const client = new ApolloClient({
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
     </ApolloProvider>
   </StrictMode>
 );
