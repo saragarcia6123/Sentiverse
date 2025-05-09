@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:24-slim
 
 # Set working directory inside the container
 WORKDIR /app
@@ -16,4 +16,4 @@ COPY . .
 EXPOSE 5173
 
 # Start the application
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]
+CMD ["nginx", "-g", "daemon off"]
