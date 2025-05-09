@@ -26,6 +26,7 @@ Its core aim is to enhance the way we connect with music by revealing at a glanc
 - [GraphQL](https://graphql.org) with [Strawberry](https://strawberry.rocks)
 - [RoBERTa](https://huggingface.co/FacebookAI/roberta-large-mnli) with [PyTorch](https://pytorch.org/) and [Transformers](https://huggingface.co/docs/transformers/index)
 - [BeautifulSoup](https://beautiful-soup-4.readthedocs.io)
+- [Uvicorn](https://www.uvicorn.org/) for hosting
 
 ### Frontend
 
@@ -33,18 +34,15 @@ Its core aim is to enhance the way we connect with music by revealing at a glanc
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Apollo](https://www.apollographql.com/)
 - [Vite](https://vite.dev/) & [npm](https://www.npmjs.com/)
+- [Nginx](https://nginx.org/) for hosting
 
-### DevOps (Work-in-progress)
-
-- [Docker](https://www.docker.com/)
-- [Nginx](https://nginx.org/)
-- [AWS](https://aws.amazon.com/)
-
-## Running Locally
+## Local Setup
 
 ### Pre-requisites
 
-- [Docker Compose](https://docs.docker.com/compose/install/)
+- [Python >= 3.10](https://www.python.org/downloads/)
+- [PyTorch](https://pytorch.org/get-started/locally/)
+- [Node.js](https://nodejs.org/en)
 
 ### 1. Obtain a Genius API key from [here](https://genius.com/api-clients)
 
@@ -52,19 +50,28 @@ Its core aim is to enhance the way we connect with music by revealing at a glanc
 
 ```sh
 git clone https://github.com/saragarcia6123/Sentiverse.git
-cd Sentiverse/backend/
+cd Sentiverse
 ```
 
 ### 3. Create a .env file in `backend` and set your Genius Access Token
 
 ```sh
+cd backend
 echo GENIUS_ACCESS_TOKEN=your_access_token > .env
 ```
 
-### 4. Run the application with Docker Compose
+### 4a. Start the backend
 
 ```sh
-docker compose up
+cd src
+fastapi dev app.py
+```
+
+### 4b. Start the frontend
+
+```sh
+cd ../../frontend
+npm run dev
 ```
 
 ### Authors
