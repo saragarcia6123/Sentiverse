@@ -25,7 +25,7 @@ class Classifier:
     def __init__(
         self,
         task: str = "zero-shot-classification",
-        model: str = "roberta-large-mnli",
+        model: str = "roberta-base-mnli",
     ) -> None:
         tokenizer = AutoTokenizer.from_pretrained(model)
         device = "cuda:0" if torch.cuda.is_available() else "cpu"
@@ -34,7 +34,7 @@ class Classifier:
             model=model,
             device=device,
             framework="pt",
-            torch_dtype=torch.float16,
+            torch_dtype=torch.float8_e4m3fn,
             tokenizer=tokenizer,
         )
 
