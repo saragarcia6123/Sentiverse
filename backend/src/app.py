@@ -5,12 +5,21 @@ from fastapi.middleware.cors import CORSMiddleware
 # GraphQL
 from src.schema import router as graphql_router
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
+
 app = FastAPI(docs_url=None)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
-    allow_methods=["GET", "POST"],
+    allow_origins=ALLOWED_HOSTS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 """

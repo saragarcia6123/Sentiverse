@@ -20,12 +20,10 @@ import torch
 
 class Classifier:
 
-    type SetResults = Tuple[List[str], List[float]]
-
     def __init__(
         self,
         task: str = "zero-shot-classification",
-        model: str = "roberta-base-mnli",
+        model: str = "roberta-large-mnli",
     ) -> None:
         tokenizer = AutoTokenizer.from_pretrained(model)
         device = "cuda:0" if torch.cuda.is_available() else "cpu"
@@ -34,7 +32,7 @@ class Classifier:
             model=model,
             device=device,
             framework="pt",
-            torch_dtype=torch.float8_e4m3fn,
+            torch_dtype=torch.float16,
             tokenizer=tokenizer,
         )
 
@@ -42,7 +40,7 @@ class Classifier:
         self,
         text: str,
         labels: List[str],
-    ) -> SetResults:
+    ):
         scores_dict: dict = self.classifier(text, labels)
         labels = scores_dict["labels"]
         scores = [round(score, 2) for score in scores_dict["scores"]]
@@ -50,7 +48,7 @@ class Classifier:
 
     def _classify_sets(
         self, text: str, label_sets: List[List[str]], num_workers: int = 4
-    ) -> List[SetResults]:
+    ) -> List:
         with ThreadPoolExecutor(max_workers=num_workers) as executor:
             futures = [
                 executor.submit(partial(self._classify_set, text, labels))
@@ -66,6 +64,6 @@ class Classifier:
         unique_label_sets = list(set(tuple(label) for label in label_sets))
         return [list(label) for label in unique_label_sets]
 
-    def classify(self, text: str, label_sets: List[List[str]]) -> List[SetResults]:
+    def classify(self, text: str, label_sets: List[List[str]]) -> List:
         label_sets = self.remove_duplicate_label_sets(label_sets)
         return self._classify_sets(text, label_sets)

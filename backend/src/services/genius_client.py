@@ -226,9 +226,14 @@ class GeniusClient:
                 The Genius endpoint to the song's lyrics
                 eg. '/Hillsong-united-oceans-where-feet-may-fail-lyrics'
         """
+
+        from .proxies import proxies
         session = ClientSession()
         url = f"{self._SITE_URL}{path}"
-        response = await self._get_response(url=url, session=session)
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+        response = await self._get_response(url=url, session=session, headers=headers, proxy=proxies["http"])
         await session.close()
 
         soup = BeautifulSoup(response, "html.parser")
