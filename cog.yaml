@@ -1,0 +1,15 @@
+# Configuration for Cog ⚙️
+# Reference: https://cog.run/yaml
+
+build:
+
+  gpu: true
+
+  python_version: "3.11"
+
+  python_requirements: models/requirements.txt
+
+  run:
+     - "echo Environment ready"
+
+predict: "models.predict:Predictor
