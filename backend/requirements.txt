@@ -1,7 +1,7 @@
 aiohttp
 asyncio
 beautifulsoup4
-transformers
 strawberry-graphql[fastapi]
 fastapi[standard]
 python-dotenv
+openai

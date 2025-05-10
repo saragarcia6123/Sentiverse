@@ -10,13 +10,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS") or "http://localhost:5173"
 
 app = FastAPI(docs_url=None)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_HOSTS,
+    allow_origins=ALLOWED_HOSTS.split(","),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

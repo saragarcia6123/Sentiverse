@@ -1,6 +1,4 @@
 from typing import List
-
-import aiohttp
 import strawberry
 from strawberry.fastapi import GraphQLRouter
 
@@ -74,7 +72,7 @@ class Query:
         return await _fetch_lyrics(path=path)
 
     @strawberry.field
-    async def classify(
+    def classify(
         self,
         text: str,
         label_sets: List[List[str]],
@@ -96,7 +94,7 @@ class Query:
         """
         from src.routes.ml_routes import classify as _classify
 
-        return await _classify(text=text, label_sets=label_sets)
+        return _classify(text=text, label_sets=label_sets)
 
 
 schema = strawberry.Schema(Query)
