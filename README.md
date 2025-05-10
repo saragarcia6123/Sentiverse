@@ -22,41 +22,58 @@ Its core aim is to enhance the way we connect with music by revealing at a glanc
 
 ## Core Technologies
 
-### Backend
-
-- [Python](https://www.python.org/)
-- [FastAPI](https://fastapi.tiangolo.com)
-- [GraphQL](https://graphql.org)
-- [Strawberry](https://strawberry.rocks)
-- [BeautifulSoup](https://beautiful-soup-4.readthedocs.io)
-- [OpenAI](https://openai.com/)
-
-### Frontend
-
-- [Typescript](https://www.typescriptlang.org/)
-- [React](https://react.dev)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Apollo](https://www.apollographql.com/)
-- [Vite](https://vite.dev/)
-- [npm](https://www.npmjs.com/)
-
-### DevOps
-
-- [Nginx](https://nginx.org/)
-- [Uvicorn](https://www.uvicorn.org/)
-- [Docker](https://www.docker.com/)
-- [Google Cloud](https://console.cloud.google.com/)
+<table>
+  <tr>
+    <th>Backend</th>
+    <th>Frontend</th>
+    <th>DevOps</th>
+  </tr>
+  <tr>
+    <td><a href="https://www.python.org/">Python</a></td>
+    <td><a href="https://www.typescriptlang.org/">Typescript</a></td>
+    <td><a href="https://nginx.org/">Nginx</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://fastapi.tiangolo.com">FastAPI</a></td>
+    <td><a href="https://react.dev">React</a></td>
+    <td><a href="https://www.uvicorn.org/">Uvicorn</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://graphql.org">GraphQL</a></td>
+    <td><a href="https://tailwindcss.com/">Tailwind CSS</a></td>
+    <td><a href="https://www.docker.com/">Docker</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://strawberry.rocks">Strawberry</a></td>
+    <td><a href="https://www.apollographql.com/">Apollo</a></td>
+    <td><a href="https://console.cloud.google.com/">Google Cloud</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://beautiful-soup-4.readthedocs.io">BeautifulSoup</a></td>
+    <td><a href="https://vite.dev/">Vite</a></td>
+    <td><a href="https://git-scm.com/">Git</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://openai.com/">OpenAI</a></td>
+    <td><a href="https://www.npmjs.com/">npm</a></td>
+    <td></td>
+  </tr>
+</table>
 
 ---
 
-## Local Setup
+## Local Setup (Linux + MacOS)
+
+> For Windows users: if you'd like to contribute a working translation, feel free to submit it via a pull request.
 
 ### Pre-requisites
 
-- [Python](https://www.python.org/downloads/)
-- [Node.js](https://nodejs.org/en)
+- [Python](https://www.python.org/downloads/) + [pip](https://pypi.org/project/pip/)
+- [Node.js](https://nodejs.org/en) + [npm](https://www.npmjs.com/)
 
-### 1. Obtain a Genius API key from [here](https://genius.com/api-clients) and an OpenAI key from [here](https://openai.com/api/)
+### Obtain a Genius API key from [here](https://genius.com/api-clients)
+
+### Obtain an OpenAI key from [here](https://openai.com/api/)
 
 ### 2. Clone the repository
 
@@ -65,29 +82,11 @@ git clone https://github.com/saragarcia6123/Sentiverse.git
 cd Sentiverse
 ```
 
-### 3. Create a .env file in `backend` and set your API keys
+### 3. Run the setup file
 
 ```sh
-cd backend
-touch .env
-echo GENIUS_ACCESS_TOKEN=your_access_token >> .env
-echo OPENAI_API_KEY=your_api_key >> .env
+./setup.sh
 ```
-
-### 4a. Start the backend
-
-```sh
-fastapi dev src/app.py
-```
-
-### 4b. Start the frontend
-
-```sh
-cd ../frontend
-npm run dev
-```
-
-### Open your browser and navigate to <http://localhost:5173>
 
 ### Authors
 
