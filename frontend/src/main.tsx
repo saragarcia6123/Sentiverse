@@ -6,7 +6,7 @@ import "./index.css";
 import App from "./App.tsx";
 import { ThemeProvider } from "./hooks/useThemeContext.tsx";
 
-const API_URL: string = import.meta.env.VITE_API_URL;
+const API_URL: string = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 const client = new ApolloClient({
   uri: `${API_URL}/graphql`,
