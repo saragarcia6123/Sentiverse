@@ -27,7 +27,7 @@ export default function Lyrics() {
 
   return (
     <div id="pageLyrics" className="pb-8 flex flex-col items-center">
-      <div className="flex flex-col gap-8 justify-center w-fit">
+      <div className="flex flex-col gap-8 justify-center w-fit px-8">
         <LyricsCard lyrics={fetchLyrics.content} />
         <button
           onClick={showResults}
