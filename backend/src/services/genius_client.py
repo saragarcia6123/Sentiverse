@@ -269,6 +269,22 @@ class GeniusClient:
 
         lyrics = lyrics_div.get_text("\n", strip=True)
 
+        # Remove \n characters only inside square brackets []
+        lyrics = re.sub(
+            r"\[(?:[^\[\]]|\n)*?\]", lambda m: m.group(0).replace("\n", " "), lyrics
+        )
+
+        # Remove trailing spaces
+        lyrics = lyrics.replace("[ ", "[").replace(" ]", "]").replace(" ,", ",")
+
+        # Remove trailing new lines
+        lyrics = lyrics.replace("(\n", "(").replace("\n)", ")").replace("\n,", ",")
+
+        # Add spaces after commas only inside square brackes []
+        lyrics = re.sub(
+            r"\[(?:[^\[\]]|,)*?\]", lambda m: m.group(0).replace(",", ", "), lyrics
+        )
+
         # Add an extra line before lines section labels ie [Verse 1]
         lines = []
         for line in lyrics.splitlines():
@@ -277,5 +293,6 @@ class GeniusClient:
             lines.append(line)
 
         lyrics = "\n".join(lines)
+        print(lyrics)
 
         return lyrics
