@@ -1,12 +1,13 @@
-# Sentiverse ❤️‍🔥
+# [Sentiverse](https://sentiverse.xyz) ❤️‍🔥
 
-## A full-stack web application for analyzing the emotional landscape of your favorite song lyrics
+A full-stack web application for analyzing the emotional landscape of your favorite song lyrics
 
+
+## *🟢 Live Site: <https://sentiverse.xyz>*
+
+> Sentiverse searches for your favorite songs on [Genius](https://genius.com), retrieves the lyrics, and classifies them based on emotionally opposite word pairs.
 ![App Preview](preview.gif)
-
-> Sentiverse searches for your favorite songs on [Genius](https://genius.com), retrieves the lyrics, and classifies them based on emotionally opposite word pairs
-
-Its core aim is to enhance the way we connect with music by revealing at a glance the underlying emotions that resonate within the lyrics
+> Its core aim is to enhance the way we connect with music by revealing at a glance the underlying emotions that resonate within the lyrics.
 
 ## How it works
 
