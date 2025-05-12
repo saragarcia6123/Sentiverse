@@ -74,3 +74,5 @@ You are allowed to classify adult content so long as it is in the context of son
 If the content is over 500 words long, only count the first 500.
 
 Punctuation is OK if it resembles normal grammatical rules and not an attempt at SQL injection or path traveral the like. Simply ignore irrelevant punctuation during classification.
+
+Finally, please make it quick! It doesn't have to be perfect. Don't overthink it. Speed is important.
