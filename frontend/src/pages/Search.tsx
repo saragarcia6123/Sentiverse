@@ -5,6 +5,7 @@ import Loading from "./Loading";
 import Error from "./Error";
 import { SongType } from "../types/SongType";
 import SongCard from "../components/SongCard";
+import DOMPurify from "dompurify";
 
 export default function Search() {
   const [searchParams] = useSearchParams();
@@ -14,9 +15,9 @@ export default function Search() {
 
   const { loading, error, data } = useQuery(GET_SONG_MATCHES, {
     variables: {
-      songQuery: songQuery || "",
-      artistQuery: artistQuery || "",
-      limit: 5,
+      songQuery: DOMPurify.sanitize(songQuery || ""),
+      artistQuery: DOMPurify.sanitize(artistQuery || ""),
+      limit: 8,
     },
   });
 

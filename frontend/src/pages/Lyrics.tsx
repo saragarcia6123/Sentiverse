@@ -7,6 +7,7 @@ import LyricsCard from "../components/LyricsCard";
 import { LyricsType } from "../types/LyricsType";
 import { useState } from "react";
 import Classification from "../components/Classification";
+import DOMPurify from "dompurify";
 
 export default function Lyrics() {
   const { path } = useParams();
@@ -14,7 +15,7 @@ export default function Lyrics() {
 
   const { loading, error, data } = useQuery(FETCH_LYRICS, {
     variables: {
-      path: `/${path}`,
+      path: `/${DOMPurify.sanitize(path || "")}`,
     },
   });
 

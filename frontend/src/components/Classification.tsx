@@ -4,12 +4,15 @@ import { ClipLoader } from "react-spinners";
 import { ClassificationType } from "../types/ClassificationType";
 import { LABEL_PAIRS } from "../data/label_sets";
 import PairChart from "./PairChart";
+import DOMPurify from "dompurify";
 
 export default function Classification({ lyrics }: { lyrics: string }) {
   const { loading, error, data } = useQuery(CLASSIFY, {
     variables: {
-      text: lyrics,
-      labelSets: LABEL_PAIRS,
+      text: DOMPurify.sanitize(lyrics),
+      labelSets: LABEL_PAIRS.map((row) =>
+        row.map((cell) => DOMPurify.sanitize(cell))
+      ),
     },
   });
 
