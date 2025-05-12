@@ -5,3 +5,4 @@ strawberry-graphql[fastapi]
 fastapi[standard]
 python-dotenv
 openai
+bleach

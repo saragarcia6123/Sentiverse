@@ -3,6 +3,7 @@ from typing import List
 import ast
 from dotenv import load_dotenv
 from openai import OpenAI
+import bleach
 
 
 class Classifier:
@@ -16,9 +17,13 @@ class Classifier:
         load_dotenv()
         OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-        self.CLIENT = OpenAI(api_key=OPENAI_API_KEY)
+        self.CLIENT = OpenAI(api_key=OPENAI_API_KEY, timeout=10)
 
     def classify(self, text: str, label_sets: List[List[str]]):
+
+        # Sanitize input
+        text = bleach.clean(text, tags=[], strip=True)
+
         prompt = f"""
                 text: {text}
                 label_sets: {label_sets}
@@ -31,5 +36,5 @@ class Classifier:
         )
 
         response = ast.literal_eval(output.output_text)
-        print(response)
+
         return response
