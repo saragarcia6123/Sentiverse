@@ -8,7 +8,7 @@ import bleach
 
 class Classifier:
 
-    def __init__(self, model="o4-mini"):
+    def __init__(self, model="gpt-3.5-turbo"):
         self.MODEL = model
 
         with open("res/instructions.txt") as f:
