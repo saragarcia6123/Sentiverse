@@ -12,12 +12,8 @@ genius = GeniusClient(os.getenv("GENIUS_ACCESS_TOKEN"))
 from src.schema import Song
 
 
-async def query_song(
-    song_query: str, artist_query: str, limit: int | None
-) -> List[Song]:
-    response = await genius.search_song_data(
-        songs=[song_query], artists=[artist_query], limit=limit
-    )
+async def query_song(song_query: str, limit: int | None) -> List[Song]:
+    response = await genius.search_song_data(songs=[song_query], limit=limit)
     response = [item["result"] for item in response[0]]
     print(response)
 

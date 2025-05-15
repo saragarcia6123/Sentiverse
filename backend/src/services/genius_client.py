@@ -78,7 +78,6 @@ class GeniusClient:
     async def _fetch_song_data(
         self,
         song: str,
-        artist: str,
         limit: int,
         session: ClientSession,
         retries: int | None,
@@ -86,7 +85,7 @@ class GeniusClient:
     ) -> dict | None:
         """Returns song data for matching results of a single search"""
 
-        params = {"q": f"{artist} {song}"}
+        params = {"q": song}
         endpoint = "/search"
         url = f"{self._API_URL}{endpoint}?{urlencode(params)}"
 
@@ -104,7 +103,6 @@ class GeniusClient:
     async def search_song_data(
         self,
         songs: List[str],
-        artists: List[str],
         limit: int = DEFAULT_SEARCH_LIMIT,
         retries: int = DEFAULT_RETRIES,
         delay: int = DEFAULT_DELAY,
@@ -116,11 +114,7 @@ class GeniusClient:
         params:
             - songs (List[str]):
                 The list of song queries (case insensitive)
-                eg. ["amazing grace", "oceans"]
-            
-            - artists (List[str]):
-                The list of artist queries (case insensitive)
-                eg. ["passion", "hillsong united"]
+                eg. ["amazing grace oceans"]
             
             - limit (int):
                 The maximum number of matches to return
@@ -142,13 +136,12 @@ class GeniusClient:
         tasks = [
             self._fetch_song_data(
                 song=song,
-                artist=artist,
                 limit=limit,
                 session=session,
                 retries=retries,
                 delay=delay,
             )
-            for song, artist in zip(songs, artists)
+            for song in songs
         ]
 
         data: List[List[dict]] = await asyncio.gather(*tasks)
@@ -173,7 +166,6 @@ class GeniusClient:
 
             - url (str):
                 The full encoded url to make the request to
-                e.g. https://api.genius.com/search?q=despacito%20luis%20fonsi
             
             - retries (int):
                 The number of times to retry a failed request
@@ -221,10 +213,8 @@ class GeniusClient:
         Scrapes the lyrics from the given Genius song URL.
 
         params:
-
             - path (str):
                 The Genius endpoint to the song's lyrics
-                eg. '/Hillsong-united-oceans-where-feet-may-fail-lyrics'
         """
 
         from .proxies import proxies

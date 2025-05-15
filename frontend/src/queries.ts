@@ -1,9 +1,8 @@
-import { DocumentNode, gql } from '@apollo/client';
+import { DocumentNode, gql } from "@apollo/client";
 
 export const GET_SONG_MATCHES: DocumentNode = gql`
-  query getSongMatches(
-    $songQuery: String!, $artistQuery: String!, $limit: Int) {
-    querySong(songQuery: $songQuery, artistQuery: $artistQuery, limit: $limit) {
+  query getSongMatches($songQuery: String!, $limit: Int) {
+    querySong(songQuery: $songQuery, limit: $limit) {
       songName
       artistName
       imageUrl
@@ -13,8 +12,7 @@ export const GET_SONG_MATCHES: DocumentNode = gql`
 `;
 
 export const FETCH_LYRICS: DocumentNode = gql`
-  query fetchLyrics(
-    $path: String!) {
+  query fetchLyrics($path: String!) {
     fetchLyrics(path: $path) {
       content
     }
@@ -22,8 +20,7 @@ export const FETCH_LYRICS: DocumentNode = gql`
 `;
 
 export const CLASSIFY: DocumentNode = gql`
-  query classify(
-    $text: String!, $labelSets: [[String!]!]!) {
+  query classify($text: String!, $labelSets: [[String!]!]!) {
     classify(text: $text, labelSets: $labelSets) {
       labels
       scores

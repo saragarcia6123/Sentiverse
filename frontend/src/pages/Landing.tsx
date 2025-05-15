@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 export default function Landing() {
   const songInput: RefObject<HTMLInputElement | null> =
     useRef<HTMLInputElement>(null);
-  const artistInput: RefObject<HTMLInputElement | null> =
-    useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
 
@@ -13,31 +11,23 @@ export default function Landing() {
     event.preventDefault();
 
     const song = songInput.current?.value || "";
-    const artist = artistInput.current?.value || "";
 
-    const path = `/search?song=${encodeURIComponent(
-      song
-    )}&artist=${encodeURIComponent(artist)}`;
+    const path = `/search?q=${encodeURIComponent(song)}`;
     navigate(path);
   }
 
   return (
     <div
       id="pageLanding"
-      className="my-4 mx-8 flex justify-center items-center h-full"
+      className="my-4 mx-8 flex justify-center items-center h-[30%]"
     >
       <form
         onSubmit={handleSubmit}
         className="w-[500px] flex flex-col gap-4 justify-center"
       >
         <input
-          placeholder="Song"
+          placeholder="Enter your favorite song"
           ref={songInput}
-          className="rounded-full border-gray-600 dark:border-gray-400 border-1 text-2xl px-4 py-2"
-        />
-        <input
-          placeholder="Artist"
-          ref={artistInput}
           className="rounded-full border-gray-600 dark:border-gray-400 border-1 text-2xl px-4 py-2"
         />
         <button

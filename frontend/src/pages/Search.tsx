@@ -10,13 +10,11 @@ import DOMPurify from "dompurify";
 export default function Search() {
   const [searchParams] = useSearchParams();
 
-  const songQuery = searchParams.get("song");
-  const artistQuery = searchParams.get("artist");
+  const songQuery = searchParams.get("q");
 
   const { loading, error, data } = useQuery(GET_SONG_MATCHES, {
     variables: {
       songQuery: DOMPurify.sanitize(songQuery || ""),
-      artistQuery: DOMPurify.sanitize(artistQuery || ""),
       limit: 8,
     },
   });

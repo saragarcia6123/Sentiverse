@@ -33,15 +33,12 @@ class ClassificationResults:
 class Query:
 
     @strawberry.field
-    async def query_song(
-        self, song_query: str, artist_query: str, limit: int | None = None
-    ) -> List[Song]:
+    async def query_song(self, song_query: str, limit: int | None = None) -> List[Song]:
         """
         ----- EXAMPLE GRAPHQL QUERY -----
         query {
             querySong(
-                songQuery: "amazing grace",
-                artistQuery: "passion"
+                songQuery: "amazing grace passion",
             ) {
                 id,
                 songName,
@@ -53,7 +50,7 @@ class Query:
         """
         from src.routes.genius_routes import query_song as _query_song
 
-        return await _query_song(song_query, artist_query, limit)
+        return await _query_song(song_query, limit)
 
     @strawberry.field
     async def fetch_lyrics(self, path: str) -> Text:
