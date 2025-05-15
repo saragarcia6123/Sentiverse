@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600&display=swap");
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
@@ -9,11 +10,35 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 #root {
   min-height: 100vh;
-  height: 100%;
 }
 
 body {
-  @apply bg-white text-gray-800 dark:bg-gray-700 dark:text-white;
+  @apply font-[Red_Hat_Display];
+  @apply bg-white text-[rgb(30,0,10)] dark:bg-gray-700 dark:text-white;
+}
+
+.dark-mode {
+  background: linear-gradient(
+    to bottom,
+    rgba(300, 200, 200, 0.2),
+    rgba(200, 300, 220, 0.2)
+  );
+}
+
+.light-mode {
+  background: linear-gradient(
+    to bottom,
+    rgba(58, 69, 85, 0.3),
+    rgba(73, 52, 52, 0.6)
+  );
+}
+
+.button {
+  @apply hover:cursor-pointer flex items-center justify-center rounded-full p-4 hover:bg-purple-800/80 text-white shadow bg-purple-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500;
 }

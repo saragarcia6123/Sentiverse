@@ -17,7 +17,7 @@ export default function PairChart({ pair }: { pair: ClassificationType }) {
       </div>
       <div className={`w-full h-8 flex`}>
         <div
-          className={`bg-green-400 text-green-900 h-full flex justify-start pl-4 align-middle items-center rounded-l-full`}
+          className={`bg-green-400/75 text-green-900 h-full flex justify-start pl-4 align-middle items-center rounded-l-full`}
           style={{
             width: `${positivePercentage}%`,
           }}
@@ -32,7 +32,7 @@ export default function PairChart({ pair }: { pair: ClassificationType }) {
           </span>
         </div>
         <div
-          className={`bg-red-400 text-red-900 h-full flex justify-end pr-4 align-middle items-center rounded-r-full`}
+          className={`bg-red-400/75 text-red-900 h-full flex justify-end pr-4 align-middle items-center rounded-r-full`}
           style={{
             width: `${negativePercentage}%`,
           }}

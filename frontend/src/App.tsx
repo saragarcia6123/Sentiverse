@@ -7,7 +7,7 @@ import Lyrics from "./pages/Lyrics.js";
 
 export default function App() {
   return (
-    <div className="h-[100vh] w-full box-border mx-auto p-0">
+    <div className="size-full h-[100vh] flex flex-col box-border p-0">
       <Router>
         <Header />
         <Routes>
@@ -17,6 +17,37 @@ export default function App() {
           <Route path="*" element={<Error name="404" message="Not found" />} />
         </Routes>
       </Router>
+      {/* Background layer */}
+      <div
+        className="opacity-20"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: 'url("/bg.jpg")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          zIndex: -20,
+          width: "100%",
+          height: "100%",
+        }}
+      />
+      {/* Tint Overlay */}
+      <div
+        className="light-mode dark:dark-mode"
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: -10,
+        }}
+      />
     </div>
   );
 }

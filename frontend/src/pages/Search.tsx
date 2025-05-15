@@ -25,7 +25,7 @@ export default function Search() {
   const { querySong }: { querySong: Array<SongType> } = data;
 
   return (
-    <div id="pageSearch" className="w-full flex justify-center">
+    <div id="pageSearch" className="w-full flex justify-center py-8">
       {querySong.length === 0 ? (
         <div>Please enter a search term in the URL</div>
       ) : (

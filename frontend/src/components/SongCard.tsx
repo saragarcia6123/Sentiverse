@@ -24,7 +24,7 @@ export default function SongCard({
     <a
       key={songName}
       onClick={handleClick}
-      className="flex border-gray-600 border-1 rounded-3xl hover:cursor-pointer hover:bg-black/5"
+      className="flex dark:border-gray-400 border-1 rounded-3xl hover:cursor-pointer hover:bg-black/5 dark:hover:bg-white/5"
     >
       <div className="w-full h-full p-8 flex flex-col align-middle justify-between">
         <h3 className="w-full text-xl font-bold">{songName}</h3>

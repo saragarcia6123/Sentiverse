@@ -6,7 +6,7 @@ export default function LyricsCard({ lyrics }: LyricsCardProps) {
   const sections: string[] = lyrics.split("\n\n");
 
   return (
-    <div className="w-fit">
+    <div className="w-fit py-6 px-12 bg-indigo-950/70 text-white/90 dark:bg-indigo-950/50 rounded-xl shadow-lg">
       {sections.map((section: string, id: number) => (
         <LyricSection key={`section-${id}`} content={section} />
       ))}

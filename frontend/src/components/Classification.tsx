@@ -5,6 +5,7 @@ import { ClassificationType } from "../types/ClassificationType";
 import { LABEL_PAIRS } from "../data/label_sets";
 import PairChart from "./PairChart";
 import DOMPurify from "dompurify";
+import { useEffect } from "react";
 
 export default function Classification({ lyrics }: { lyrics: string }) {
   const { loading, error, data } = useQuery(CLASSIFY, {
@@ -15,6 +16,15 @@ export default function Classification({ lyrics }: { lyrics: string }) {
       ),
     },
   });
+
+  useEffect(() => {
+    const results = document.getElementById("results");
+    if (!loading && results) {
+      results.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  }, [loading]);
 
   if (loading)
     return (
@@ -31,7 +41,10 @@ export default function Classification({ lyrics }: { lyrics: string }) {
   const { classify }: { classify: ClassificationType[] } = data;
 
   return (
-    <div className="px-8 py-16 flex flex-col gap-2 justify-center w-full max-w-2xl">
+    <div
+      id="results"
+      className="px-8 py-16 flex flex-col gap-2 justify-center w-full max-w-2xl"
+    >
       <div className="flex flex-col gap-2">
         {classify.map((pair: ClassificationType) => (
           <PairChart pair={pair} />

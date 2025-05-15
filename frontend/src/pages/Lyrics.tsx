@@ -27,12 +27,12 @@ export default function Lyrics() {
   const showResults = () => setResultsVisible(true);
 
   return (
-    <div id="pageLyrics" className="pb-8 flex flex-col items-center">
+    <div id="pageLyrics" className="mt-8 pb-8 flex flex-col items-center">
       <div className="flex flex-col gap-8 justify-center w-fit px-8">
         <LyricsCard lyrics={fetchLyrics.content} />
         <button
           onClick={showResults}
-          className="rounded-full text-red-950 bg-red-200 hover:enabled:bg-red-300 enabled:border-red-800 border-2 text-2xl px-4 py-2 hover:enabled:cursor-pointer disabled:text-red-300"
+          className="button tracking-wide text-xl"
           disabled={resultsVisible}
         >
           Classify
