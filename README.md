@@ -2,6 +2,7 @@
 
 A full-stack web application for analyzing the emotional landscape of your favorite song lyrics
 
+[![wakatime](https://wakatime.com/badge/github/saragarcia6123/Sentiverse.svg)](https://wakatime.com/badge/github/saragarcia6123/Sentiverse)
 
 ## *🟢 Live Site: <https://sentiverse.xyz>*
 
