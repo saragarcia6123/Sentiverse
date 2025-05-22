@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import { CLASSIFY } from "../queries";
 import { ClipLoader } from "react-spinners";
 import { ClassificationType } from "../types/ClassificationType";
-import { LABEL_PAIRS } from "../data/label_sets";
+import { LABEL_PAIRS, POSITIVE_LABELS } from "../data/label_sets";
 import PairChart from "./PairChart";
 import DOMPurify from "dompurify";
 import { useEffect } from "react";
@@ -46,10 +46,28 @@ export default function Classification({ lyrics }: { lyrics: string }) {
       className="px-8 py-16 flex flex-col gap-2 justify-center w-full max-w-2xl"
     >
       <div className="flex flex-col gap-2">
-        {classify.map((pair: ClassificationType) => (
+        {sortByPositiveScores([...classify]).map((pair: ClassificationType) => (
           <PairChart pair={pair} />
         ))}
       </div>
     </div>
   );
+}
+
+function sortByPositiveScores(
+  classifications: ClassificationType[]
+): ClassificationType[] {
+  return classifications.sort((a, b) => {
+    // Find the index of the positive label in the labels array
+    const aPositiveScore = a.labels.reduce((score, label, index) => {
+      return POSITIVE_LABELS.includes(label) ? a.scores[index] : score;
+    }, 0);
+
+    const bPositiveScore = b.labels.reduce((score, label, index) => {
+      return POSITIVE_LABELS.includes(label) ? b.scores[index] : score;
+    }, 0);
+
+    // Sort in descending order
+    return bPositiveScore - aPositiveScore;
+  });
 }
