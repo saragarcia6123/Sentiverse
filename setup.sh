@@ -18,17 +18,9 @@ while [[ -z "$GENIUS_ACCESS_TOKEN" ]]; do
   [[ -z "$GENIUS_ACCESS_TOKEN" ]] && echo "GENIUS_ACCESS_TOKEN cannot be empty."
 done
 
-# Prompt until not empty
-while [[ -z "$OPENAI_API_KEY" ]]; do
-  read -s -p "Enter your OPENAI_API_KEY (https://openai.com/api/): " OPENAI_API_KEY
-  echo
-  [[ -z "$OPENAI_API_KEY" ]] && echo "OPENAI_API_KEY cannot be empty."
-done
-
 # Create and populate .env file with user input
 touch .env
 echo "GENIUS_ACCESS_TOKEN=$GENIUS_ACCESS_TOKEN" >> .env
-echo "OPENAI_API_KEY=$OPENAI_API_KEY" >> .env
 
 # Setup python environment
 python -m venv .venv

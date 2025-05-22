@@ -1,9 +1,6 @@
-# [Sentiverse](https://sentiverse.xyz) ❤️‍🔥
+# Sentiverse ❤️‍🔥
 
-A full-stack web application for analyzing the emotional landscape of your favorite song lyrics
-
-
-## *🟢 Live Site: <https://sentiverse.xyz>*
+## A full-stack web application for analyzing the emotional landscape of your favorite song lyrics
 
 > Sentiverse searches for your favorite songs on [Genius](https://genius.com), retrieves the lyrics, and classifies them based on emotionally opposite word pairs.
 ![App Preview](preview.gif)
@@ -16,7 +13,7 @@ A full-stack web application for analyzing the emotional landscape of your favor
 3) The user selects the matching song
 4) The API scrapes the lyrics from the Genius website
 5) The lyrics are cleaned and preprocessed
-6) OpenAI's ChatGPT then classifies the lyrics according to a set of clear, predefined instructions.
+6) Facebook's RoBERTa then classifies the lyrics according to a set of clear, predefined instructions.
 7) The scores for each pair sum up to 1.0, which are displayed in the frontend as a stacked bar chart
 
 ---
@@ -55,7 +52,7 @@ A full-stack web application for analyzing the emotional landscape of your favor
     <td><a href="https://git-scm.com/">Git</a></td>
   </tr>
   <tr>
-    <td><a href="https://openai.com/">OpenAI</a></td>
+    <td><a href="https://pytorch.org/">PyTorch</a></td>
     <td><a href="https://www.npmjs.com/">npm</a></td>
     <td></td>
   </tr>
@@ -72,9 +69,7 @@ A full-stack web application for analyzing the emotional landscape of your favor
 - [Python](https://www.python.org/downloads/) + [pip](https://pypi.org/project/pip/)
 - [Node.js](https://nodejs.org/en) + [npm](https://www.npmjs.com/)
 
-### Obtain a Genius API key from [here](https://genius.com/api-clients)
-
-### Obtain an OpenAI key from [here](https://openai.com/api/)
+### 1. Obtain a Genius API key from [here](https://genius.com/api-clients)
 
 ### 2. Clone the repository
 

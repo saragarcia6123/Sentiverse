@@ -4,5 +4,5 @@ beautifulsoup4
 strawberry-graphql[fastapi]
 fastapi[standard]
 python-dotenv
-openai
-bleach
+torch
+huggingface_hub[hf_xet]
